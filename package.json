@@ -20,5 +20,8 @@
   "devDependencies": {
     "typescript": "^5.9.3",
     "vue-tsc": "^3.2.5"
+  },
+  "overrides": {
+    "serialize-javascript": "^7.0.4"
   }
 }
