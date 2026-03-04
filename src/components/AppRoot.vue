@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import type { SupportedLocale } from "@/types/supported-locale.ts";
 import { useHead } from "@unhead/vue";
 import { profile } from "@/data/profile.ts";
 import { useLocalize } from "@/composables/use-localize";
@@ -10,11 +9,7 @@ import CertificationsSection from "@/components/sections/CertificationsSection.v
 import ExperienceSection from "@/components/sections/ExperienceSection.vue";
 import FooterSection from "@/components/sections/FooterSection.vue";
 
-const { locale } = defineProps<{
-  locale: SupportedLocale;
-}>();
-
-const localize = useLocalize(() => locale);
+const { localize, locale } = useLocalize();
 
 useHead({
   htmlAttrs: { lang: () => locale },
@@ -34,12 +29,12 @@ useHead({
 </script>
 
 <template>
-  <HeaderSection :locale />
+  <HeaderSection />
   <main>
-    <AboutSection :locale />
-    <SkillsSection :locale />
-    <CertificationsSection :locale />
-    <ExperienceSection :locale />
+    <AboutSection />
+    <SkillsSection />
+    <CertificationsSection />
+    <ExperienceSection />
   </main>
   <FooterSection />
 </template>

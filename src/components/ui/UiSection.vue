@@ -1,3 +1,13 @@
+<script lang="ts" setup>
+defineProps<{
+  dark?: boolean;
+}>();
+
+defineSlots<{
+  default(): unknown;
+}>();
+</script>
+
 <template>
   <section class="ui-section" :class="{ 'is--dark': dark }">
     <div class="content">
@@ -5,12 +15,6 @@
     </div>
   </section>
 </template>
-
-<script lang="ts" setup>
-defineProps<{
-  dark?: boolean;
-}>();
-</script>
 
 <style lang="postcss" scoped>
 .ui-section {

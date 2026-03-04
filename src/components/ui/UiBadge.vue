@@ -1,20 +1,24 @@
-<script setup lang="ts">
-import { useVariants } from '@/composables/use-variants'
+<script lang="ts" setup>
+import { useVariants } from "@/composables/use-variants";
 
-export type UiBadgeSize = 'small' | 'medium'
-export type UiBadgeColor = 'neutral' | 'warm'
+export type UiBadgeSize = "small" | "medium";
+export type UiBadgeColor = "neutral" | "warm";
 
 const {
-  size = 'medium',
-  color = 'neutral',
+  size = "medium",
+  color = "neutral",
   outlined,
 } = defineProps<{
-  size?: UiBadgeSize
-  color?: UiBadgeColor
-  outlined?: boolean
-}>()
+  size?: UiBadgeSize;
+  color?: UiBadgeColor;
+  outlined?: boolean;
+}>();
 
-const variantClasses = useVariants(() => ({ size, color, outlined }))
+defineSlots<{
+  default(): unknown;
+}>();
+
+const variantClasses = useVariants(() => ({ size, color, outlined }));
 </script>
 
 <template>

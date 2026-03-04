@@ -1,22 +1,36 @@
-<script setup lang="ts">
-import UiBadge from '@/components/ui/UiBadge.vue'
-import UiSection from '@/components/ui/UiSection.vue'
-import UiSectionTitle from '@/components/ui/UiSectionTitle.vue'
-import { experienceSection } from '@/data/experiences-section'
-import type { SupportedLocale } from '@/types/supported-locale'
-import { useLocalize } from '@/composables/use-localize'
+<script lang="ts" setup>
+import UiBadge from "@/components/ui/UiBadge.vue";
+import UiSection from "@/components/ui/UiSection.vue";
+import UiSectionTitle from "@/components/ui/UiSectionTitle.vue";
+import { experienceSection } from "@/data/experiences-section";
+import { useLocalize } from "@/composables/use-localize";
+import { computed, ref } from "vue";
 
-const { locale } = defineProps<{ locale: SupportedLocale }>()
+const { localize } = useLocalize();
 
-const localize = useLocalize(() => locale)
+const devOnly = ref(true);
+
+const devFilterLabel = { fr: "Dev uniquement", en: "Dev only" };
+
+const experiences = computed(() =>
+  devOnly.value
+    ? experienceSection.experiences.filter((e) => e.type === "dev")
+    : experienceSection.experiences,
+);
 </script>
 
 <template>
   <UiSection>
-    <UiSectionTitle>{{ localize(experienceSection.sectionTitle) }}</UiSectionTitle>
+    <UiSectionTitle class="section-title">
+      <div>{{ localize(experienceSection.sectionTitle) }}</div>
+      <label class="dev-filter">
+        <input v-model="devOnly" type="checkbox" />
+        {{ localize(devFilterLabel) }}
+      </label>
+    </UiSectionTitle>
     <div class="experiences">
       <article
-        v-for="experience of experienceSection.experiences"
+        v-for="experience of experiences"
         :key="`${experience.company}-${experience.period}`"
         class="experience"
         :class="{
@@ -27,17 +41,25 @@ const localize = useLocalize(() => locale)
         <div class="header">
           <div>
             <div class="title-row">
-              <h3 class="company">{{ experience.company }}</h3>
-              <UiBadge v-if="experience.freelance" color="warm" size="small">Freelance</UiBadge>
-              <UiBadge v-if="experience.remote" outlined size="small">Full Remote</UiBadge>
+              <h3 class="company">
+                {{ experience.company }}
+              </h3>
+              <UiBadge v-if="experience.freelance" color="warm" size="small"> Freelance </UiBadge>
+              <UiBadge v-if="experience.remote" outlined size="small"> Full Remote </UiBadge>
             </div>
-            <p class="role">{{ localize(experience.role) }}</p>
+            <p class="role">
+              {{ localize(experience.role) }}
+            </p>
           </div>
           <span class="period">{{ experience.period }}</span>
         </div>
 
-        <p v-if="experience.location" class="location">{{ experience.location }}</p>
-        <p class="description">{{ localize(experience.description) }}</p>
+        <p v-if="experience.location" class="location">
+          {{ experience.location }}
+        </p>
+        <p class="description">
+          {{ localize(experience.description) }}
+        </p>
 
         <div v-if="experience.stack?.length" class="stack">
           <span v-for="tech of experience.stack" :key="tech" class="tag">{{ tech }}</span>
@@ -47,7 +69,33 @@ const localize = useLocalize(() => locale)
   </UiSection>
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dev-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--color-border);
+  border-radius: 100vw;
+  font-size: 0.75rem;
+  color: var(--color-accent-warm);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+
+  &:has(input:checked) {
+    border-color: var(--color-accent-warm);
+    color: var(--color-accent-warm);
+    background-color: var(--color-accent-soft);
+  }
+}
+
 .experiences {
   display: flex;
   flex-direction: column;

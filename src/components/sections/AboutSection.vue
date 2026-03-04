@@ -1,19 +1,18 @@
 <script lang="ts" setup>
-import UiSection from '@/components/ui/UiSection.vue'
-import UiSectionTitle from '@/components/ui/UiSectionTitle.vue'
-import { aboutSection } from '@/data/about-section'
-import type { SupportedLocale } from '@/types/supported-locale'
-import { useLocalize } from '@/composables/use-localize'
+import UiSection from "@/components/ui/UiSection.vue";
+import UiSectionTitle from "@/components/ui/UiSectionTitle.vue";
+import { aboutSection } from "@/data/about-section";
+import { useLocalize } from "@/composables/use-localize";
 
-const { locale } = defineProps<{ locale: SupportedLocale }>()
-
-const localize = useLocalize(() => locale)
+const { localize } = useLocalize();
 </script>
 
 <template>
   <UiSection>
     <UiSectionTitle>{{ localize(aboutSection.sectionTitle) }}</UiSectionTitle>
-    <p v-for="line of localize(aboutSection.content)" :key="line" class="line">{{ line }}</p>
+    <p v-for="line of localize(aboutSection.content)" :key="line" class="line">
+      {{ line }}
+    </p>
   </UiSection>
 </template>
 

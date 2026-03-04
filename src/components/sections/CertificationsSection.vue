@@ -1,18 +1,17 @@
-<script setup lang="ts">
-import UiSection from '@/components/ui/UiSection.vue'
-import UiSectionTitle from '@/components/ui/UiSectionTitle.vue'
-import { certificationSection } from '@/data/certification-section.ts'
-import type { SupportedLocale } from '@/types/supported-locale.ts'
-import { useLocalize } from '@/composables/use-localize'
+<script lang="ts" setup>
+import UiSection from "@/components/ui/UiSection.vue";
+import UiSectionTitle from "@/components/ui/UiSectionTitle.vue";
+import { certificationSection } from "@/data/certification-section.ts";
+import { useLocalize } from "@/composables/use-localize";
 
-const { locale } = defineProps<{ locale: SupportedLocale }>()
-
-const localize = useLocalize(() => locale)
+const { localize } = useLocalize();
 </script>
 
 <template>
   <UiSection>
-    <UiSectionTitle small>{{ localize(certificationSection.sectionTitle) }}</UiSectionTitle>
+    <UiSectionTitle small>
+      {{ localize(certificationSection.sectionTitle) }}
+    </UiSectionTitle>
     <div class="certifications-row">
       <a
         v-for="certification of certificationSection.certifications"
@@ -35,7 +34,7 @@ const localize = useLocalize(() => locale)
   </UiSection>
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
 .certifications-row {
   display: flex;
   gap: 1rem;

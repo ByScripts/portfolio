@@ -1,14 +1,14 @@
-<script setup lang="ts">
-import type { SupportedLocale } from '@/types/supported-locale'
-import { computed } from 'vue'
-import type { RouteLocationRaw } from 'vue-router'
+<script lang="ts" setup>
+import { computed } from "vue";
+import type { RouteLocationRaw } from "vue-router";
+import type { SupportedLocale } from "@/types/supported-locale";
 
 const { locale } = defineProps<{
-  route: RouteLocationRaw
-  locale: SupportedLocale
-}>()
+  route: RouteLocationRaw;
+  locale: SupportedLocale;
+}>();
 
-const ariaLabel = computed(() => `Switch to ${locale}`)
+const ariaLabel = computed(() => `Switch to ${locale}`);
 </script>
 
 <template>
@@ -17,7 +17,7 @@ const ariaLabel = computed(() => `Switch to ${locale}`)
   </RouterLink>
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
 .ui-locale-switcher {
   background: transparent;
   border: 1px solid currentColor;

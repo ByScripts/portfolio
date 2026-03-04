@@ -1,13 +1,17 @@
 <script lang="ts" setup>
 defineProps<{
-  small?: boolean
-}>()
+  small?: boolean;
+}>();
+
+defineSlots<{
+  default(): unknown;
+}>();
 </script>
 
 <template>
-  <component :is="small ? 'h3' : 'h2'" class="ui-section-title" :class="{ 'is--small': small }"
-    ><slot
-  /></component>
+  <component :is="small ? 'h3' : 'h2'" class="ui-section-title" :class="{ 'is--small': small }">
+    <slot />
+  </component>
 </template>
 
 <style lang="postcss" scoped>
@@ -23,7 +27,7 @@ defineProps<{
   }
 
   &:not(.is--small)::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -6px;
     left: 0;

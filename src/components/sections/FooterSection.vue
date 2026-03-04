@@ -1,8 +1,8 @@
-<script setup lang="ts">
-import UiSection from '@/components/ui/UiSection.vue'
-import { profile } from '@/data/profile'
+<script lang="ts" setup>
+import UiSection from "@/components/ui/UiSection.vue";
+import { profile } from "@/data/profile";
 
-const year = new Date().getFullYear()
+const year = new Date().getFullYear();
 </script>
 
 <template>
@@ -26,7 +26,7 @@ const year = new Date().getFullYear()
   </UiSection>
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
 .footer-section {
   .links {
     display: flex;

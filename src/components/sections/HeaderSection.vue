@@ -1,14 +1,11 @@
-<script setup lang="ts">
-import { profile } from '@/data/profile'
-import type { SupportedLocale } from '@/types/supported-locale'
-import { useLocalize } from '@/composables/use-localize'
-import logo from '@/assets/images/logo/logo-128x128.png'
-import UiSection from '@/components/ui/UiSection.vue'
-import UiLocaleSwitcher from '@/components/ui/UiLocaleSwitcher.vue'
+<script lang="ts" setup>
+import { profile } from "@/data/profile";
+import { useLocalize } from "@/composables/use-localize";
+import logo from "@/assets/images/logo/logo-128x128.png";
+import UiSection from "@/components/ui/UiSection.vue";
+import UiLocaleSwitcher from "@/components/ui/UiLocaleSwitcher.vue";
 
-const { locale } = defineProps<{ locale: SupportedLocale }>()
-
-const localize = useLocalize(() => locale)
+const { locale, localize } = useLocalize();
 </script>
 
 <template>
@@ -21,10 +18,18 @@ const localize = useLocalize(() => locale)
       />
     </div>
 
-    <h1 class="name">{{ profile.name }}</h1>
-    <p class="title">{{ localize(profile.title) }}</p>
-    <p class="description">{{ localize(profile.description) }}</p>
-    <p class="location">{{ profile.location }}</p>
+    <h1 class="name">
+      {{ profile.name }}
+    </h1>
+    <p class="title">
+      {{ localize(profile.title) }}
+    </p>
+    <p class="description">
+      {{ localize(profile.description) }}
+    </p>
+    <p class="location">
+      {{ profile.location }}
+    </p>
 
     <div class="links">
       <a
@@ -41,7 +46,7 @@ const localize = useLocalize(() => locale)
   </UiSection>
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
 .header-section {
   .top {
     display: flex;
