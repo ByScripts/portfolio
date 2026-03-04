@@ -1,30 +1,75 @@
-# Portfolio — Thierry Goettelmann
+# Nuxt Minimal Starter
 
-Personal portfolio website built with Vue 3, TypeScript, and Vite.
-
-## Tech Stack
-
-- **Vue 3** — Composition API, `<script setup>`
-- **TypeScript** — Strict mode
-- **Vite** — Dev server & build
-- **Vite SSG** — Static site generation
-- **Unhead** — SEO & meta management
-- **ESLint + Oxlint** — Linting
-- **Oxfmt** — Formatting
+Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
 
-```sh
+Make sure to install dependencies:
+
+```bash
+# npm
+npm install
+
+# pnpm
 pnpm install
+
+# yarn
+yarn install
+
+# bun
+bun install
+```
+
+## Development Server
+
+Start the development server on `http://localhost:3000`:
+
+```bash
+# npm
+npm run dev
+
+# pnpm
 pnpm dev
+
+# yarn
+yarn dev
+
+# bun
+bun run dev
 ```
 
-## Build
+## Production
 
-```sh
+Build the application for production:
+
+```bash
+# npm
+npm run build
+
+# pnpm
 pnpm build
+
+# yarn
+yarn build
+
+# bun
+bun run build
 ```
 
-## License
+Locally preview production build:
 
-[MIT](./LICENSE)
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
